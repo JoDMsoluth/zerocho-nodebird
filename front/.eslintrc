@@ -1,0 +1,26 @@
+{
+  // json 처럼 동작 코딩스타일 설정
+  "parserOptions": {
+    // 코딩할 것들 설정
+    "ecmaVersion": 2018, //ecmascript 2018기준
+    "sourceType": "module", // import, export, require 처럼 모듈시스템으로 코딩
+    "ecmaFeatures": {
+      // react에서 사용하는 jsx를 경고하지 않겠다.
+      "jsx": true
+    }
+  },
+  "env": {
+    // 브라우저환경, 노드환경 사용
+    "browser": true,
+    "node": true
+  },
+  "extends": [
+    "eslint:recommended", // eslint가 추천하는 코딩 스타일
+    "plugin:react/recommended" // react를 할때 eslint가 추천하는 리액트 코딩 스타일
+  ],
+  "plugins": [
+    // 플러그인들은 직접 설치해야 됨
+    "import", // eslint가 기본적으로 react, import, export, hooks를 지원안함
+    "react-hooks"
+  ]
+}
