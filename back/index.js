@@ -38,7 +38,8 @@ app.use(
       httpOnly: true, // javascript로 쿠키 접근 x
       secure: false // https를 쓸 때 true
     },
-    name: "rnbck"
+    name: "rnbck",
+    store: ""
   })
 );
 app.use(passport.initialize());

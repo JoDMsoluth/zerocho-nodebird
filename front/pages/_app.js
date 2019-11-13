@@ -13,7 +13,7 @@ import { applyMiddleware } from "redux";
 import { compose } from "redux";
 import rootSaga from "../sagas/index";
 
-const NodeBird = ({ Component, store }) => {
+const NodeBird = ({ Component, store, pageProps }) => {
   // next에서 Component라는 props(자식컴포넌트: index.js같은거)를 넣어줌
   return (
     <Provider store={store}>
@@ -25,7 +25,7 @@ const NodeBird = ({ Component, store }) => {
         />
       </Head>
       <AppLayout>
-        <Component />
+        <Component {...pageProps} />
       </AppLayout>
     </Provider>
   );
@@ -34,6 +34,16 @@ const NodeBird = ({ Component, store }) => {
 NodeBird.propTypes = {
   Component: PropTypes.elementType.isRequired, // 렌더링 될 수 있는 모든 것 (node), JSX가 아닌 엘리멘트(elementType)
   store: PropTypes.object.isRequired
+};
+
+NodeBird.getInitialProps = async context => {
+  console.log(context);
+  const { ctx } = context;
+  let pageProps = {};
+  if (context.Component.getInitialProps) {
+    pageProps = await context.Component.getInitialProps(ctx);
+  }
+  return { pageProps };
 };
 
 export default withRedux((initialState, options) => {
